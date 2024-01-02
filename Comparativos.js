@@ -1,36 +1,68 @@
-let isPowerON = true   
-let isBatteryConnected = true
-//se todos forem verdadeiros '&&'
-console.log(isBatteryConnected && isPowerON)
+let heroLvl = 1;
+let heroName = "HERÓI" + "!";
+let completeQuests = 0; // QUESTS COMPLETADAS PELO USUARIO
+completeQuests++;
+let xpToNextLevel = 0;
+let rank = "FERRO"; // INICIA COM FERRO
+let xpPoints = 0; // VERIFICANDO O RANK ATUAL DO HEROI COM BASE NO XP ATUAL
 
-//se um OU outro forem verdadeiros '||'
-isBatteryConnected = false
-console.log(isBatteryConnected || isPowerON)
+function questsRealizadas() {
+  xpPoints += 100;
+  completeQuests++;
 
-let condition1= true
-let condition2 = false
+  console.log("Parabéns, você completou uma quest! \n", "XP + 100" + "\n");
 
-const logicalExpression = condition1 || condition2
+  if (xpPoints <= 1000) {
+    rank = "FERRO";
+  } else if (xpPoints <= 2000) {
+    rank = "BRONZE";
+  } else if (xpPoints <= 5000) {
+    rank = "PRATA";
+  } else if (xpPoints <= 7000) {
+    rank = "OURO";
+  } else if (xpPoints <= 8000) {
+    rank = "PLATINA";
+  } else if (xpPoints <= 9000) {
+    rank = "ASCENDENTE";
+  } else if (xpPoints <= 10000) {
+    rank = "IMORTAL";
+  } else if (xpPoints <= 11000) {
+    rank = "RADIANTE";
+  }
 
-console.log(!logicalExpression||logicalExpression)
+  // Atualiza xpToNextLevel para a quantidade de XP restante até o próximo nível
+  if (rank !== "RADIANTE") {
+    let nextRankXP = rank === "FERRO" ? 1000 : rank === "BRONZE" ? 2000 : rank === "PRATA" ? 5000 : rank === "OURO" ? 7000 : rank === "PLATINA" ? 8000 : rank === "ASCENDENTE" ? 9000 : rank === "IMORTAL" ? 10000 : 11000;
+    xpToNextLevel = nextRankXP - xpPoints;
+  } else {
+    xpToNextLevel = 0; // Se já alcançou o nível máximo, xpToNextLevel é 0
+  }
+}
 
+// SIMULAÇÃO CASO O HERÓI TENHA REALIZADO AS QUESTS E ACUMULADO PONTOS DE XP
+for (let i = 1; i <= 60; i++) {
+  console.log("Quest realizadas: " + completeQuests);
+  questsRealizadas();
 
-let isLoanApproved = true
-let cash = 30000
-let cost = 45000
+  let xpOverflow = xpPoints - xpToNextLevel;
 
-const canBuyACar = isLoanApproved || (cash>cost)
+  while (xpOverflow >= 0) {
+    heroLvl++;
+    console.log(
+      "PARABÉNS, " + heroName,
+      "VOCÊ SUBIU DE NÍVEL! \n",
+      "NOVO NÍVEL: " + heroLvl + "\n"
+    );
+    xpOverflow = xpPoints - xpToNextLevel;
+    questsRealizadas(); // Atualiza o rank após a subida de nível
+  }
+}
 
-console.log(canBuyACar)
+let levelConsult = xpPoints;
 
-
-//teste para saber se uma pessoa pode ou não comprar um carro
-let LoanApproved = false
-let Clientcash = 50000
-let carCost = 45000
-
-const insufficientBalance = cash > carCost || !(isLoanApproved)
-
-let clientCantBuyACar = "Your balance are insufficient to buy this car"
-
-console.log(clientCantBuyACar)
+console.log(
+  "SEU SALDO ATUAL DE XP É DE: " + levelConsult + "\n",
+  "E FALTAM " + xpToNextLevel + " PONTOS DE XP PARA ALCANÇAR O PRÓXIMO NÍVEL" +
+  "\n" +
+  "(RANK ATUAL: " + rank + ")"
+);
