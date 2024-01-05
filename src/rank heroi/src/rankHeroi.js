@@ -1,4 +1,3 @@
-
 let wins = 100 
 let loses = 26
 let rank = ""
@@ -28,22 +27,12 @@ if (wins > 0 && points === calculatePoints()) {
         rank = "IMORTAL";
     }
 } else {
-    rank = "Sem rank"; // Se não houver vitórias ou pontos não equivalentes às vitórias
+    rank = "Sem rank"; 
 }
 
 console.log("O Herói tem de saldo de: " + points,
 "vitórias e está no rank: " + rank)
 
-//UPGRADES A ACRESCENTAR:
-/* 
-
-1 - Implementação do sistema de pontos por vitoria, onde o ranking
-só irá subir caso a quantidade de pontos e vitorias sejam equivalentes
-
-2- Simulação randomica de vitorias e derrotas, como se o personagem estivesse
-de fato em um jogo, sem a necessidade de colocar os valores manualmente nas
-variáveis "wins e loses"
-*/
 
 /*PS.: As fontes usadas para criação desse código foram as aulas da plataforma disponibilizadas, 
 a documentação da linguagem JavaScript e o site do StackOverflow.*/ 
