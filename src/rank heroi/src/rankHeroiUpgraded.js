@@ -13,6 +13,7 @@ function simulateGame (){
     }
 }
 for (i=0; i<3; i++){
+//alterar o valor de i caso deseje mais simulações
     simulateGame()
 }
 function calculatePoints (){
